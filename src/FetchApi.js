@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Header, Left, Right, Icon } from "native-base";
 
 import {
   StyleSheet,
@@ -47,6 +48,9 @@ class FetchApi extends Component {
 
   static navigationOptions = {
     title: "Movies List",
+    drawerIcon: ({ tintColor }) => (
+      <Icon name="list" style={{ fontSize: 24, color: tintColor }} />
+    ),
     headerStyle: {
       backgroundColor: "#c12312"
     }

@@ -1,40 +1,66 @@
 import React, { Component } from "react";
-import { Button, Text, View } from "react-native";
-import { createAppContainer, createStackNavigator } from "react-navigation";
-import FetchApiPage from "./src/FetchApi";
+import {
+  Image,
+  ScrollView,
+  Button,
+  Text,
+  View,
+  Dimensions
+} from "react-native";
+import {
+  createAppContainer,
+  createDrawerNavigator,
+  DrawerItems
+} from "react-navigation";
 
-class AppHome extends Component {
-  static navigationOptions = {
-    title: "Melcom Movies",
-    headerStyle: {
-      backgroundColor: "#c12312"
-    },
-    headerTintColor: "#fff",
-    HeaderTitleStyle: {
-      fontWeight: "bold"
-    }
-  };
+import FetchApiPage from "./src/FetchApi";
+import HomePage from "./src/Home";
+import AboutPage from "./src/About";
+import ContactPage from "./src/Contact";
+
+const { width } = Dimensions.get("window");
+
+export default class App extends Component {
   render() {
-    return (
-      <View>
-        <Text> Hamid </Text>
-        <Button
-          onPress={() =>
-            this.props.navigation.navigate("FetchApi", { group: "Movies" })
-          }
-          title="Load Data"
-        />
-      </View>
-    );
+    return <AppContainer />;
   }
 }
 
-const AppNavigator = createStackNavigator(
+customDrawerComponent = props => (
+  <View style={{ flex: 1 }}>
+    <View
+      style={{
+        height: 150,
+        backgroundColor: "white",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      <Image
+        source={require("./assets/500.png")}
+        style={{ height: 120, width: 150 }}
+      />
+    </View>
+    <ScrollView>
+      <DrawerItems {...props} />
+    </ScrollView>
+  </View>
+);
+const AppDrawerNavigator = createDrawerNavigator(
   {
-    Home: { screen: AppHome },
-    FetchApi: { screen: FetchApiPage }
+    Home: HomePage,
+    About: AboutPage,
+    Contact: ContactPage,
+    FetchApi: FetchApiPage
   },
-  { initialRouteName: "Home" }
+  {
+    contentComponent: customDrawerComponent,
+    contentOptions: {
+      activeTintColor: "blue"
+    },
+    drawerPosition: "right",
+    drawerWidth: width
+  }
 );
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppDrawerNavigator);
