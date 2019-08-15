@@ -29,7 +29,7 @@ class Home extends Component {
             />
           </Right>
         </Header>
-        <Text> Hamid </Text>
+        <Text> Home </Text>
         <Button
           onPress={() =>
             this.props.navigation.navigate("FetchApi", { group: "Movies" })

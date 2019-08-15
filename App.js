@@ -17,6 +17,7 @@ import FetchApiPage from "./src/FetchApi";
 import HomePage from "./src/Home";
 import AboutPage from "./src/About";
 import ContactPage from "./src/Contact";
+import ContactMaterialMenuPage from "./src/ContactMaterialMenu";
 
 const { width } = Dimensions.get("window");
 
@@ -51,6 +52,7 @@ const AppDrawerNavigator = createDrawerNavigator(
     Home: HomePage,
     About: AboutPage,
     Contact: ContactPage,
+    ContactM: ContactMaterialMenuPage,
     FetchApi: FetchApiPage
   },
   {
